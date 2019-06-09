@@ -485,7 +485,7 @@ class NotiifiersMixin:
         except APIError:
             return False
         build = results["id"]
-        if not current_build == build:
+        if current_build < build:
             await self.bot.database.set_cog_config(self,
                                                    {"cache.build": build})
             return True
